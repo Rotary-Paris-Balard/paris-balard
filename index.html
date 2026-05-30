@@ -510,8 +510,8 @@
           Un réseau de <em>professionnels</em><br>engagés pour agir
         </h1>
         <div class="hero-meta">
-          <span class="hero-meta-item"><span class="icon">📍</span> Paris 8e — Hôtel Bedford</span>
-          <span class="hero-meta-item"><span class="icon">🗓</span> Chaque mercredi 19h00</span>
+          <span class="hero-meta-item"><span class="icon">📍</span> Paris 8e — <span id="hero-lieu">Hôtel Bedford</span></span>
+          <span class="hero-meta-item"><span class="icon">🗓</span> <span id="hero-jour">Chaque mercredi</span> <span id="hero-horaire">19h00</span></span>
           <span class="hero-meta-item"><span class="icon">👥</span> Avocats, médecins, entrepreneurs…</span>
         </div>
         <p class="hero-subtitle">
@@ -530,10 +530,10 @@
         <div class="month">Chaque semaine</div>
         <div class="divider"></div>
         <div class="time-loc">
-          <strong>19h00</strong><br>
-          Hôtel Bedford<br>
-          17 rue de l'Arcade<br>
-          75008 Paris
+          <strong id="next-horaire">19h00</strong><br>
+          <span id="next-lieu">Hôtel Bedford</span><br>
+          <span id="next-adresse">17 rue de l'Arcade</span><br>
+          <span id="next-ville">75008 Paris</span>
         </div>
       </div>
     </div>
@@ -804,7 +804,7 @@
     </div>
     <div class="footer-bottom">
       <p>© 2026 Rotary Club Paris Balard</p>
-      <p>Hôtel Bedford · 17 rue de l'Arcade · 75008 Paris · Mercredi 19h00</p>
+      <p id="footer-reunion">Hôtel Bedford · 17 rue de l'Arcade · 75008 Paris · Mercredi 19h00</p>
     </div>
   </footer>
 
@@ -834,10 +834,31 @@
         const r = await fetch(base + '_data/reunion.json');
         if (r.ok) {
           const d = await r.json();
-          if (d.horaire) document.getElementById('reunion-horaire').textContent = d.horaire;
-          if (d.jour) document.getElementById('reunion-jour').textContent = d.jour;
-          if (d.lieu) document.getElementById('reunion-lieu').textContent = d.lieu;
-          if (d.adresse && d.ville) document.getElementById('reunion-adresse').innerHTML = d.adresse + '<br>' + d.ville;
+          const jour = d.jour || 'Chaque mercredi';
+          const horaire = d.horaire || '19h00';
+          const lieu = d.lieu || 'Hôtel Bedford';
+          const adresse = d.adresse || "17 rue de l'Arcade";
+          const ville = d.ville || '75008 Paris';
+
+          // Section réunions
+          document.getElementById('reunion-horaire').textContent = horaire;
+          document.getElementById('reunion-jour').textContent = jour;
+          document.getElementById('reunion-lieu').textContent = lieu;
+          document.getElementById('reunion-adresse').innerHTML = adresse + '<br>' + ville;
+
+          // Hero meta
+          document.getElementById('hero-lieu').textContent = lieu;
+          document.getElementById('hero-jour').textContent = jour;
+          document.getElementById('hero-horaire').textContent = horaire;
+
+          // Hero next-meeting card
+          document.getElementById('next-horaire').textContent = horaire;
+          document.getElementById('next-lieu').textContent = lieu;
+          document.getElementById('next-adresse').textContent = adresse;
+          document.getElementById('next-ville').textContent = ville;
+
+          // Footer
+          document.getElementById('footer-reunion').textContent = lieu + ' · ' + adresse + ' · ' + ville + ' · ' + jour + ' ' + horaire;
         }
       } catch(e) {}
 
