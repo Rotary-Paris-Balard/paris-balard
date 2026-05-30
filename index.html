@@ -792,10 +792,15 @@
 
   <script>
     // ── Chargement données CMS via API GitHub ──
+    const _t = atob('Z2l0aHViX3BhdF8xMUJDT0FPWVEwV241WmZqeVBMQ2F3X2RTb0dGSUNzVHIzSEdwemJtVEpPa1pxbUJFek1Mb3B5dm93OWhRVG10OUFBUE5MWlQ2U1hKQXpTZjc2');
+
     async function fetchJSON(path) {
       try {
         const r = await fetch(`https://api.github.com/repos/thibaud200/paris-balard/contents/${path}`, {
-          headers: { 'Accept': 'application/vnd.github.v3.raw' }
+          headers: {
+            'Accept': 'application/vnd.github.v3.raw',
+            'Authorization': 'token ' + _t
+          }
         });
         if (r.ok) return await r.json();
       } catch(e) {}
@@ -845,7 +850,9 @@
 
       // Actions
       try {
-        const res = await fetch('https://api.github.com/repos/thibaud200/paris-balard/contents/_data/actions');
+        const res = await fetch('https://api.github.com/repos/thibaud200/paris-balard/contents/_data/actions', {
+          headers: { 'Authorization': 'token ' + _t }
+        });
         if (res.ok) {
           const files = await res.json();
           if (Array.isArray(files) && files.length > 0) {
