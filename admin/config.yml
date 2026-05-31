@@ -2,6 +2,8 @@ backend:
   name: github
   repo: thibaud200/paris-balard
   branch: main
+  base_url: https://rotary-oauth.purple-dawn-2ac1.workers.dev
+  auth_endpoint: /auth
 
 site_url: https://www.rotaryparisbalard.fr
 display_url: https://www.rotaryparisbalard.fr
