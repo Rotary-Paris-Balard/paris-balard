@@ -7,7 +7,7 @@
   <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
   <style>
     #logout-btn {
-      position: fixed; bottom: 1rem; right: 1rem; z-index: 99999;
+      position: fixed; top: 1rem; right: 1rem; z-index: 999999;
       background: #c00; color: white; border: none;
       padding: 0.5rem 1rem; cursor: pointer; font-size: 0.8rem;
       border-radius: 4px; display: none;
@@ -16,20 +16,20 @@
 </head>
 <body>
   <button id="logout-btn" onclick="logout()">Se déconnecter</button>
- <script>
-  function logout() {
-    localStorage.removeItem('sveltia-cms.user');
-    localStorage.removeItem('sveltia-cms.prefs');
-    sessionStorage.clear();
-    window.location.reload();
-  }
-
-  const interval = setInterval(() => {
-    if (localStorage.getItem('sveltia-cms.user')) {
-      document.getElementById('logout-btn').style.display = 'block';
-      clearInterval(interval);
+  <script>
+    function logout() {
+      localStorage.removeItem('sveltia-cms.user');
+      localStorage.removeItem('sveltia-cms.prefs');
+      sessionStorage.clear();
+      window.location.reload();
     }
-  }, 1000);
-</script>
+
+    const interval = setInterval(() => {
+      if (localStorage.getItem('sveltia-cms.user')) {
+        document.getElementById('logout-btn').style.display = 'block';
+        clearInterval(interval);
+      }
+    }, 1000);
+  </script>
 </body>
 </html>
