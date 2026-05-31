@@ -25,7 +25,7 @@
     // Afficher le bouton si connecté
     window.addEventListener('load', () => {
       setTimeout(() => {
-        const hasToken = Object.keys(localStorage).some(k => k.includes('token') || k.includes('sveltia') || k.includes('netlify'));
+        const hasToken = localStorage.getItem('sveltia-cms.user') !== null;
         if (hasToken) document.getElementById('logout-btn').style.display = 'block';
       }, 2000);
     });
