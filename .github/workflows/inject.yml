@@ -160,8 +160,8 @@ jobs:
                   <span class="action-tag">{m.get("categorie","")}</span>
                 </div>''')
               if moment_cards:
-                  new_moments = '<div class="actions-grid reveal" id="actions-grid">' + ''.join(moment_cards) + '</div>'
-                  html = re.sub('<div class="actions-grid reveal" id="actions-grid">.*?</div>\n    \n    <div class="vie-grid">', new_moments + '\n  \n    <div class="vie-grid">', html, flags=re.DOTALL)
+                  new_moments = '<div class="actions-grid reveal" id="moments-grid">' + ''.join(moment_cards) + '</div>'
+                  html = re.sub('<div class="actions-grid reveal" id="moments-grid">.*?</div>', new_moments, html, flags=re.DOTALL)
           except Exception as e:
               print(f'Moments error: {e}')
 
