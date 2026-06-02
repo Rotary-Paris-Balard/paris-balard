@@ -11,6 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Wait for cache
+        run: sleep 30
+
       - name: Inject data into index.html
         run: |
           python3 << 'PYEOF'
